@@ -65,24 +65,20 @@ namespace HOTEL
                 Console.Write(" This room don't have. Try again : ");
                 num= int.Parse(Console.ReadLine());
             }
-           // bool roomBooked = false;
+            bool roomBooked = false;
             for (int i = 0; i < medium.Count; i++)
             {
                 var item = medium.ElementAt(i).Value;
                 if (num == item.NumRoom && item != null)
                 {
                     Console.WriteLine($"{item.Name}, Day: {item.Day}, NumRoom: {item.NumRoom}");
-                ///    roomBooked = true;
-                }
-                else
-                {
-                    Console.WriteLine(" No one has booked this room !!! ");
+                    roomBooked = true;
                 }
             }
-            //if (!roomBooked)
-            //{
-            //    Console.WriteLine("No one has booked this room!!!");
-            //}
+            if (!roomBooked)
+            {
+                Console.WriteLine("No one has booked this room!!!");
+            }
         }
         public override bool RentRooms(int num)
         {

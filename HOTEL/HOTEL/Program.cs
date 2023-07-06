@@ -10,7 +10,7 @@ namespace HOTEL
             Start();
         }
         static void Start() 
-        { 
+        {
             Console.WriteLine(" Chose rooms : ");
             Console.WriteLine(" 1 Expensiv rooms ");
             Console.WriteLine(" 2 Mediun rooms ");

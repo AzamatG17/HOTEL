@@ -26,11 +26,16 @@ namespace HOTEL
             int num;
             while (!int.TryParse(Console.ReadLine(), out num))
             {
-                if (num == 1 && num == 2) { break; }
                 Console.WriteLine("\n Write true number 1 or 2 : ");
             }
-            if (num == 1) { AddUser(); }
-            else { HistoryUser(); }        
+            if (num == 1)
+            {
+                AddUser(); 
+            }
+            else 
+            {
+                HistoryUser(); 
+            }        
                        
         }
         public override void AddUser()
@@ -41,14 +46,15 @@ namespace HOTEL
             int day = int.Parse(Console.ReadLine());
             Console.Write(" Choose room 1-20 : ");
             int roomNum = int.Parse(Console.ReadLine());
-            while (RentRooms(roomNum) == false)
+            while (!RentRooms(roomNum))
             {
-                Console.WriteLine(" This rooom is booked, choose other rooms 1-20 : ");
+                Console.Write(" This rooom is booked, choose other rooms 1-20 : ");
                 roomNum = int.Parse(Console.ReadLine());
-                if (RentRooms(roomNum) == true) { break; }
             }
             Quality quality = new Quality(name, day, roomNum);
-            medium.Add(12, quality);
+            medium.Add(roomNum - 1, quality);
+            Console.WriteLine(" you rand this room");
+            Display();
         }
         public override void HistoryUser()
         {
@@ -59,47 +65,35 @@ namespace HOTEL
                 Console.Write(" This room don't have. Try again : ");
                 num= int.Parse(Console.ReadLine());
             }
+           // bool roomBooked = false;
             for (int i = 0; i < medium.Count; i++)
             {
                 var item = medium.ElementAt(i).Value;
-                if (num == i && item != null)
+                if (num == item.NumRoom && item != null)
                 {
                     Console.WriteLine($"{item.Name}, Day: {item.Day}, NumRoom: {item.NumRoom}");
+                ///    roomBooked = true;
                 }
                 else
                 {
                     Console.WriteLine(" No one has booked this room !!! ");
                 }
             }
+            //if (!roomBooked)
+            //{
+            //    Console.WriteLine("No one has booked this room!!!");
+            //}
         }
         public override bool RentRooms(int num)
         {
-            if (num > 0 && num < 20)
+            if (num > 0 && num <= 20)
             {
-                for (int i = 0; i < Rooms.GetLength(0); i++)
+                if (Rooms[num - 1] == 0) 
                 {
-                    if (i == num)
-                    {
-                        if (Rooms[i] == 0)
-                        {
-                            Rooms[i] = 1;
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    Rooms[num - 1] = 1;
+                    return true;
                 }
-            }
-            else
-            {
-                return false;
-            }
+            }            
             return false;
         }
     }

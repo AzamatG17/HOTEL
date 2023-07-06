@@ -7,7 +7,6 @@ namespace HOTEL
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-
             Console.WriteLine(" Yoo Helooo !!! ");
             Start();
         }

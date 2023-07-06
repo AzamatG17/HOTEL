@@ -7,6 +7,8 @@ namespace HOTEL
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
+            DateTime dateTime = DateTime.Now;
+            Console.WriteLine($"Time is {dateTime}");
             Console.WriteLine(" Yoo Helooo !!! ");
             Start();
         }
@@ -17,11 +19,11 @@ namespace HOTEL
             Console.WriteLine(" 2 Mediun rooms ");
             Console.WriteLine(" 3 Cheap rooms ");
             Console.Write(" : ");
-            int choseRooms;//= int.Parse(Console.ReadLine());
+            int choseRooms;
             while(!(int.TryParse(Console.ReadLine(), out choseRooms) && (choseRooms >= 1 && choseRooms <= 3)))
             {
                 Console.WriteLine(" Try again !!!");
-                Start();
+               // Start();
             }
             switch (choseRooms)
             {

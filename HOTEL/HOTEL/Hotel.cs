@@ -22,5 +22,7 @@ namespace HOTEL
         public abstract bool RentRooms(int num);
         public abstract void AddUser();
         public abstract void HistoryUser();
+        public abstract void DeleteUser();
+        public abstract void Pay(int day);  
     }
 }

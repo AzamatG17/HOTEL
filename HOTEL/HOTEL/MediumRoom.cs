@@ -8,6 +8,7 @@ namespace HOTEL
 {
     internal class MediumRoom : Hotel
     {
+        private static decimal RoomPrice = 30; 
         private static int[] Rooms = new int[20];
         private Dictionary<int, Quality> medium = new Dictionary <int, Quality>();
         public MediumRoom() { }
@@ -51,6 +52,7 @@ namespace HOTEL
                 Console.Write(" This rooom is booked, choose other rooms 1-20 : ");
                 roomNum = int.Parse(Console.ReadLine());
             }
+            Pay(day);
             Quality quality = new Quality(name, day, roomNum);
             medium.Add(roomNum - 1, quality);
             Console.WriteLine(" you rand this room");
@@ -71,7 +73,7 @@ namespace HOTEL
                 var item = medium.ElementAt(i).Value;
                 if (num == item.NumRoom && item != null)
                 {
-                    Console.WriteLine($"{item.Name}, Day: {item.Day}, NumRoom: {item.NumRoom}");
+                    Console.WriteLine($" Name: {item.Name}, Day: {item.Day}, NumRoom: {item.NumRoom}");
                     roomBooked = true;
                 }
             }
@@ -79,6 +81,7 @@ namespace HOTEL
             {
                 Console.WriteLine("No one has booked this room!!!");
             }
+            Display();
         }
         public override bool RentRooms(int num)
         {
@@ -91,6 +94,32 @@ namespace HOTEL
                 }
             }            
             return false;
+        }
+        public override void DeleteUser() { }
+        public override void Pay(int day)
+        {
+            Console.WriteLine(" 1 day costs 30$ ");
+            while (true)
+            {
+                try
+                {
+                    Console.Write($" Pay this price {RoomPrice * day} : ");
+                    decimal summa = decimal.Parse(Console.ReadLine());
+                    if (summa == RoomPrice * day)
+                    {
+                        Console.WriteLine(" Payment successfully completed !!!");
+                        break;
+                    }
+                    else 
+                    {
+                        throw new Exception(" Invalid payment amount");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($" Error, {ex.Message}");
+                }
+            }                              
         }
     }
 }
